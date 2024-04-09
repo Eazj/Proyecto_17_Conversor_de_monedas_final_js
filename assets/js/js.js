@@ -64,7 +64,7 @@ btn_buscar.addEventListener("click", async () => {
   const lastValue = data.serie[0].valor;
   const serie = data.serie.slice(0, 10).reverse();
   span_resultado_conversion.innerHTML = `
-    La Cotización del día es ${lastValue}. El valor convertido es: ${valorConvertido.toFixed(2)}
+    La Cotización del día es ${lastValue}. <br/>El valor convertido es: ${valorConvertido.toFixed(2)}
   `;
   renderGrafico(serie);
 });

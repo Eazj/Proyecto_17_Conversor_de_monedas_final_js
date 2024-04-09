@@ -66,6 +66,9 @@ h3{
     background-color: #0ca2c0;
 }
 .span_resultado_conversion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
