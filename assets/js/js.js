@@ -40,29 +40,32 @@ function renderGrafico(data) {
     myChart = new Chart(canvas_grafico,config)
   }
 
-async function buscarCotizacion() {
-  try {
-    const cantidad = input_clp.value;
-    const moneda = select_moneda_a_convertir.value;
-    const fetching = await fetch(`${apiUrl}/${moneda}`);
-    const data = fetching.json();
-    return data;
-  } catch (error) {
-    span_resultado_conversion.innerHTML = "Ha ocurrido un error";
+  async function buscarCotizacion() {
+    try {
+      const cantidad = input_clp.value;
+      const moneda = select_moneda_a_convertir.value;
+      const fetching = await fetch(`${apiUrl}/${moneda}`);
+      const data = await fetching.json();
+
+      const valorConvertido = cantidad / data.serie[0].valor;
+  
+      return { valorConvertido, data };
+    } catch (error) {
+      span_resultado_conversion.innerHTML = "Ha ocurrido un error";
+    }
   }
-}
+
 /*Accion al hacer click */
 btn_buscar.addEventListener("click", async () => {
   span_resultado_conversion.innerHTML = `
     Cargando...
   `
-  const result = await buscarCotizacion();
-  const serie = result.serie;
-  const lasValue = serie[0].valor;
-  const data = serie.slice(0, 10).reverse();
+  const { valorConvertido, data } = await buscarCotizacion();
+  const lastValue = data.serie[0].valor;
+  const serie = data.serie.slice(0, 10).reverse();
   span_resultado_conversion.innerHTML = `
-    La Contizacion del dia es ${lasValue}
+    La Cotización del día es ${lastValue}. El valor convertido es: ${valorConvertido.toFixed(2)}
   `;
-  renderGrafico(data);
+  renderGrafico(serie);
 });
 
