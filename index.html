@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="divisor top"></div>
+    <h1>Conversor de monedas</h1>
+    <div class="divisor"></div>
+    <section class="container-conversor">
+        <h2 class="titulo">Pesos Chilenos(CLP)</h2>
+        <input type="number" class="input-clp" id="input_clp" placeholder="Ingrese valor en pesos">
+        <h3>Moneda a convertir</h3>
+        <select name="input-moneda-a-convertir" id="select_moneda_a_convertir" class="select_moneda_a_convertir">
+            <option value="" disabled selected>Seleccione moneda</option>
+            <option value="dolar">Dolar(USD)</option>
+            <option value="euro">Euro(EUR)</option>
+        </select>
+        <button class="boton" id="btn_buscar">Buscar</button>
+        <span id="span_resultado_conversion" class="span_resultado_conversion"></span>
+        <canvas class="grafico" id="canvas_grafico">
+
+        </canvas>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./assets/js/js.js"></script>
+</body>
+</html>
